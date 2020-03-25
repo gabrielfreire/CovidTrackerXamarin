@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:CovidTracker.Component"
+             xmlns:converters="clr-namespace:CovidTracker.Converter"
+             mc:Ignorable="d"
+             x:Name="HomePageView"
+             BackgroundColor="#eee"
+             x:Class="CovidTracker.Views.HomePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolInvertConverter x:Key="BoolInvert"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Frame Padding="5" BackgroundColor="#ddd">
+                <StackLayout>
+                    <StackLayout IsVisible="{Binding Source={x:Reference HomePageView}, Path=BindingContext.IsBusy, Converter={StaticResource BoolInvert}}">
+                        
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="important.png" Aspect="AspectFit" WidthRequest="20" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="World wide COVID-19 Cases" FontAttributes="Bold" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <ImageButton Aspect="AspectFit" WidthRequest="20" Source="refresh.png" Clicked="RefreshButton_Clicked"/>
+                        </StackLayout>
+                        <components:CovidCard CountryName="World wide COVID-19 Cases" 
+                                              Confirmed="{Binding Source={x:Reference HomePageView}, Path=BindingContext.TotalCases.Confirmed}"
+                                              Deaths="{Binding Source={x:Reference HomePageView}, Path=BindingContext.TotalCases.Deaths}"
+                                              Recovered="{Binding Source={x:Reference HomePageView}, Path=BindingContext.TotalCases.Recovered}"/>
+                    
+                        <StackLayout Spacing="5" Orientation="Horizontal">
+                            <components:CovidCard CountryName="Ireland" Small="True"
+                                            Confirmed="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Ireland.Confirmed}"
+                                            Deaths="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Ireland.Deaths}"
+                                            Recovered="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Ireland.Recovered}"/>
+                            <components:CovidCard CountryName="UK" Small="True"
+                                            Confirmed="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Uk.Confirmed}"
+                                            Deaths="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Uk.Deaths}"
+                                            Recovered="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Uk.Recovered}"/>
+                                
+                        </StackLayout>
+                    </StackLayout>
+                    <ActivityIndicator IsRunning="{Binding Source={x:Reference HomePageView}, Path=BindingContext.IsBusy}"
+                                       IsVisible="{Binding Source={x:Reference HomePageView}, Path=BindingContext.IsBusy}"
+                        HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="CenterAndExpand" 
+                                       Color="Black"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
