@@ -26,5 +26,10 @@ namespace CovidTracker.Views
         {
             _ = _viewModel.LoadCovidData();
         }
+
+        private void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Search();
+        }
     }
 }
