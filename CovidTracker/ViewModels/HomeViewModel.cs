@@ -13,6 +13,7 @@ namespace CovidTracker.ViewModels
         private CovidLocation _totalCases;
         private CovidLocation _ireland;
         private CovidLocation _uk;
+        private CovidLocation _brazil;
         #endregion
 
         #region Public members
@@ -22,6 +23,7 @@ namespace CovidTracker.ViewModels
         
         
         public CovidLocation Uk { get => _uk; set => RaiseIfPropertyChanged(ref _uk, value); }
+        public CovidLocation Brazil { get => _brazil; set => RaiseIfPropertyChanged(ref _brazil, value); }
 
         #endregion
 
@@ -39,6 +41,7 @@ namespace CovidTracker.ViewModels
                 TotalCases = App.CovidService.GetTotalCases(_covidLocations);
                 Ireland = _covidLocations.FirstOrDefault(l => l.Country == "Ireland");
                 Uk = _covidLocations.FirstOrDefault(l => l.Country == "United Kingdom");
+                Brazil = _covidLocations.FirstOrDefault(l => l.Country == "Brazil");
             }
             catch (Exception ex)
             {

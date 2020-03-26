@@ -39,6 +39,10 @@
                                             Confirmed="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Uk.Confirmed}"
                                             Deaths="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Uk.Deaths}"
                                             Recovered="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Uk.Recovered}"/>
+                            <components:CovidCard CountryName="Brazil" Small="True"
+                                            Confirmed="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Brazil.Confirmed}"
+                                            Deaths="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Brazil.Deaths}"
+                                            Recovered="{Binding Source={x:Reference HomePageView}, Path=BindingContext.Brazil.Recovered}"/>
                                 
                         </StackLayout>
                     </StackLayout>
